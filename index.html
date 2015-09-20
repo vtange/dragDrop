@@ -7,28 +7,41 @@
 <meta name="viewport" content="width=620">
 <title>HTML5 Demo: Drag and drop, automatic upload</title>
 <body>
-<section id="wrapper">
-<div class="dropzone" style="height:500px; border:1px solid red"></div>
+<style>
+    .dropzone {height:500px; border:1px solid red}
+    .onTop {border:2px solid green}
+</style>
+<div class="dropzone"></div>
     
 <div class="results"></div>
-        
-    
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 <script>
+$(document).ready(function(){
 var dropzone = document.querySelector(".dropzone");
 var results = document.querySelector(".results");
+
+dropzone.addEventListener('dragleave', function (e) {
+    e.preventDefault();
+    if ($(".dropzone").hasClass("onTop")) {
+        $(".dropzone").removeClass("onTop")
+    }
+});
 
 dropzone.addEventListener("dragover", function(e) {
     e.preventDefault();
     e.stopPropagation();
-
+    if (!$(".dropzone").hasClass("onTop")) {
+        dropzone.className += ' onTop';
+    }
     e.dataTransfer.dropEffect = "copy";
 }, false);
 
 dropzone.addEventListener("drop", function(e) {
     e.preventDefault();
     e.stopPropagation();
-
+    if ($(".dropzone").hasClass("onTop")) {
+        $(".dropzone").removeClass("onTop")
+    }
     // let's just work with one file
     var file = e.dataTransfer.files[0];
     var reader = new FileReader();
@@ -45,7 +58,7 @@ dropzone.addEventListener("drop", function(e) {
     reader.readAsText(file);
 
 }, false);
+});
 </script>
-</section>
 </body>
 </html>
