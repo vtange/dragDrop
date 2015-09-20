@@ -17,11 +17,21 @@
 <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 <script>
 $(document).ready(function(){
+var page = document.querySelector("html");
 var dropzone = document.querySelector(".dropzone");
 var results = document.querySelector(".results");
 
-dropzone.addEventListener('dragleave', function (e) {
+page.addEventListener("dragover", function(e) {
     e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = "none";
+}, false);
+page.addEventListener("drop", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}, false);
+
+dropzone.addEventListener('dragleave', function (e) {
     if ($(".dropzone").hasClass("onTop")) {
         $(".dropzone").removeClass("onTop")
     }
