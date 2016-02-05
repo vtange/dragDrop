@@ -15,4 +15,4 @@ Basic Drag and Drop
 e.dataTransfer.dropEffect = "copy";
 e.dataTransfer.dropEffect = "none";
 
-4.Load file in Drag and Drop
+4. Load file in Drag and Drop
