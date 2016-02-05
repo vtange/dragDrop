@@ -2,17 +2,18 @@
 Basic Drag and Drop
 
 - Create a Drop-zone that blocks drops and prevents default on the rest of the page.
- with:   e.preventDefault();
+ with:   
+
+```
+e.preventDefault();
+```
 
 - Drop-zone in the center changes color when hovered on.
  with: 
 
 ```
-dropzone.className += ' onTop';
+    dropzone.className += ' onTop';
 ```
-
- and:
- 
  ```
     if ($(".dropzone").hasClass("onTop")) {
         $(".dropzone").removeClass("onTop")
